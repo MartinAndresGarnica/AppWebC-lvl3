@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApp", "PokeApp.csproj", "{7BF71DE2-A72C-4655-A80F-3EE3AB44FE2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{5E1B567B-EFB9-4B77-A42E-DF2059D73ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "negocio\negocio.csproj", "{4C7416C2-61EB-4831-9A20-F41639D3609F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BF71DE2-A72C-4655-A80F-3EE3AB44FE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF71DE2-A72C-4655-A80F-3EE3AB44FE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF71DE2-A72C-4655-A80F-3EE3AB44FE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF71DE2-A72C-4655-A80F-3EE3AB44FE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1B567B-EFB9-4B77-A42E-DF2059D73ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1B567B-EFB9-4B77-A42E-DF2059D73ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1B567B-EFB9-4B77-A42E-DF2059D73ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1B567B-EFB9-4B77-A42E-DF2059D73ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C7416C2-61EB-4831-9A20-F41639D3609F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7416C2-61EB-4831-9A20-F41639D3609F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7416C2-61EB-4831-9A20-F41639D3609F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7416C2-61EB-4831-9A20-F41639D3609F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9ADC09A-516E-4029-A363-635263578568}
+	EndGlobalSection
+EndGlobal
