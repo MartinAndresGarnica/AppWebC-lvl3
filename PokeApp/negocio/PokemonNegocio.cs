@@ -10,7 +10,7 @@ namespace negocio
 {
     public class PokemonNegocio
     {
-        public List<Pokemon> listar()
+        public List<Pokemon> listar(string id = "")
         {
             List<Pokemon> lista = new List<Pokemon>();
             SqlConnection conexion = new SqlConnection();
@@ -22,7 +22,9 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select P.Numero, P.Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E, ELEMENTOS D where E.Id = P.IdTipo AND D.Id = P.IdDebilidad AND P.Activo = 1";
+                comando.CommandText = "select P.Numero, P.Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E, ELEMENTOS D where E.Id = P.IdTipo AND D.Id = P.IdDebilidad AND P.Activo = 1 ";
+                if (id != "")
+                    comando.CommandText += " and P.id = " + id;
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -97,6 +99,8 @@ namespace negocio
                 throw ex;
             }
         }
+
+
         public void agregar(Pokemon nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -106,6 +110,31 @@ namespace negocio
                 datos.setearParametros("@idTipo", nuevo.Tipo.Id);
                 datos.setearParametros("@idDebilidad", nuevo.Debilidad.Id);
                 datos.setearParametros("@urlImagen", nuevo.UrlImagen);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregarConSp(Pokemon nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storedAltaPokemon");
+                datos.setearParametros("@numero", nuevo.Numero);
+                datos.setearParametros("@nombre", nuevo.Nombre);
+                datos.setearParametros("@descripcion", nuevo.Descripcion);
+                datos.setearParametros("@imagen", nuevo.UrlImagen);
+                datos.setearParametros("@idTipo", nuevo.Tipo.Id);
+                datos.setearParametros("@idDebilidad", nuevo.Debilidad.Id);
+                //datos.setearParametros("@idEvolucion", null);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -129,6 +158,29 @@ namespace negocio
                 datos.setearParametros("@nombre", poke.Nombre);
                 datos.setearParametros("@descripcion", poke.Descripcion);
                 datos.setearParametros("@urlImagen", poke.UrlImagen);
+                datos.setearParametros("@idTipo", poke.Tipo.Id);
+                datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
+                datos.setearParametros("@Id", poke.Id);
+
+                datos.ejecutarAccion();
+                datos.cerrarConexion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public void modificarConSP(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storedModificarPokemon");
+                datos.setearParametros("@numero", poke.Numero);
+                datos.setearParametros("@nombre", poke.Nombre);
+                datos.setearParametros("@descripcion", poke.Descripcion);
+                datos.setearParametros("@imagen", poke.UrlImagen);
                 datos.setearParametros("@idTipo", poke.Tipo.Id);
                 datos.setearParametros("@idDebilidad", poke.Debilidad.Id);
                 datos.setearParametros("@Id", poke.Id);
