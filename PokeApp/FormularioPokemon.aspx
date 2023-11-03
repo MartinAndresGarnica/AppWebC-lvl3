@@ -33,7 +33,8 @@
             </div>
             <div class="mb-3">
                 <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" runat="server" OnClick="btnAceptar_Click" />
-                <a href="Default.aspx" class="btn btn-danger">Cancelar</a>
+                <a href="Default.aspx">Cancelar</a>
+                <asp:Button Text="Desactivar" ID="btnDesactivar" OnClick="btnDesactivar_Click" CssClass="btn btn-warning" runat="server" />
             </div>
         </div>
 
@@ -47,14 +48,33 @@
                 <ContentTemplate>
                     <div class="mb-3">
                         <label for="txtUrlImagen" class="form-label">Url Imagen</label>
-                        <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control border-dark" 
-                             AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged"/>
+                        <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control border-dark"
+                            AutoPostBack="true" OnTextChanged="txtUrlImagen_TextChanged" />
                     </div>
-                    <asp:Image ImageUrl="https://i0.wp.com/casagres.com.ar/wp-content/uploads/2022/09/placeholder.png?ssl=1" 
-                        runat="server" ID="imgPokemon" Width="60%"/>
+                    <asp:Image ImageUrl="https://i0.wp.com/casagres.com.ar/wp-content/uploads/2022/09/placeholder.png?ssl=1"
+                        runat="server" ID="imgPokemon" Width="60%" />
                 </ContentTemplate>
             </asp:UpdatePanel>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="mb-3">
+                        <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" runat="server" OnClick="btnEliminar_Click" />
+                    </div>
 
+                    <%if (ConfirmaEliminacion){%>
+
+                        <div class="mb-3">
+                            <asp:CheckBox Text="Confirmar Eliminacion" ID="chkConfirmaEliminacion" runat="server" />
+                            <asp:Button Text="Eliminar" ID="btnConfirmaEliminar" CssClass="btn btn-outline-danger" runat="server" OnClick="btnConfirmaEliminar_Click" />
+                        </div>
+
+                    <% }%>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

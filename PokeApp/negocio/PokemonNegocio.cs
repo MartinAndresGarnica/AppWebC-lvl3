@@ -22,7 +22,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select P.Numero, P.Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E, ELEMENTOS D where E.Id = P.IdTipo AND D.Id = P.IdDebilidad AND P.Activo = 1 ";
+                comando.CommandText = "select P.Numero, P.Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id, P.Activo from POKEMONS P, ELEMENTOS E, ELEMENTOS D where E.Id = P.IdTipo AND D.Id = P.IdDebilidad ";
                 if (id != "")
                     comando.CommandText += " and P.id = " + id;
                 comando.Connection = conexion;
@@ -47,6 +47,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)lector["idDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
+                    aux.Activo = bool.Parse(lector["Activo"].ToString());
 
                     lista.Add(aux);
                 }
@@ -87,6 +88,8 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)datos.Lector["idDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
+
+                    aux.Activo = bool.Parse(datos.Lector["Activo"].ToString());
 
                     lista.Add(aux);
                 }
@@ -293,13 +296,14 @@ namespace negocio
                 throw ex;
             }
         }
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo = false)
         {
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update POKEMONS set Activo = 0 where Id = @id");
+                datos.setearConsulta("update POKEMONS set Activo = @activo where Id = @id");
                 datos.setearParametros("@id", id);
+                datos.setearParametros("@activo", activo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
