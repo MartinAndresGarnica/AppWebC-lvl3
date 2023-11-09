@@ -28,7 +28,28 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="PokemonLista.aspx">Lista Pokemons</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Perfil.aspx">Mi perfil</a>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="d-flex">
+                        <%if (!negocio.Seguridad.sesionActiva(Session["trainee"])){ %>
+                                <a href="Login.aspx" class="btn btn-outline-success me-2">Login</a>
+                                <a href="Registro.aspx" class="btn btn-outline-primary me-2">Registrarse</a>
+                        <%}
+                          else {%>
+                                <asp:Button Text="Salir" ID="btnSalir" CssClass="btn btn-outline-primary me-2" OnClick="btnSalir_Click" runat="server" />
+                        
+                        <%}%>
+
+                        <asp:Image ID="Image1" style="height:40px; width:40px; border-radius:50%;" CssClass="me-auto" 
+                            ImageUrl="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg"
+                            runat="server" />
+                        
                     </div>
                 </div>
             </nav>

@@ -68,7 +68,6 @@ namespace PokeApp
             {
 
                 Session.Add("error", ex);
-                throw;
                 //redireccion pantalla de error
             }
         }
@@ -102,8 +101,7 @@ namespace PokeApp
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                throw;
+                Session.Add("error", ex);
             }
         }
         protected void txtUrlImagen_TextChanged(object sender, EventArgs e)
@@ -131,7 +129,6 @@ namespace PokeApp
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw;
             }
         }
 
@@ -148,7 +145,6 @@ namespace PokeApp
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw;
             }
         }
     }
