@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
+using dominio;
 
 namespace PokeApp
 {
@@ -12,11 +13,19 @@ namespace PokeApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Login || Page is Default || Page is Registro))
+            imgAvatar.ImageUrl = "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg";
+
+            if (!(Page is Login || Page is Default || Page is Registro || Page is Error))
             {
                 if (!Seguridad.sesionActiva(Session["trainee"]))
                     Response.Redirect("Login.aspx", false);
-
+                else
+                {
+                    Trainee user = (Trainee)Session["trainee"];
+                    lblUser.Text = user.Email;
+                    if (!string.IsNullOrEmpty(user.ImagenPerfil))
+                        imgAvatar.ImageUrl = "~/Images/" + user.ImagenPerfil;
+                }
             }
         }
 

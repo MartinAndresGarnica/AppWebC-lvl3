@@ -43,11 +43,10 @@
                         <%}
                           else {%>
                                 <asp:Button Text="Salir" ID="btnSalir" CssClass="btn btn-outline-primary me-2" OnClick="btnSalir_Click" runat="server" />
-                        
+                                <asp:Label Text="text" id="lblUser" CssClass="text-light m-auto me-2 form-label " runat="server" />
                         <%}%>
 
-                        <asp:Image ID="Image1" style="height:40px; width:40px; border-radius:50%;" CssClass="me-auto" 
-                            ImageUrl="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg"
+                        <asp:Image ID="imgAvatar" style="height:40px; width:40px; border-radius:50%;" CssClass="me-auto"                             
                             runat="server" />
                         
                     </div>
