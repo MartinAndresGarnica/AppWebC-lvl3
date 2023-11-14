@@ -41,6 +41,10 @@ namespace PokeApp
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 TraineeNegocio negocio = new TraineeNegocio();
                 Trainee user = (Trainee)Session["trainee"];
                 //escribir img
